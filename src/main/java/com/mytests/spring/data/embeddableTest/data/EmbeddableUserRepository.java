@@ -5,12 +5,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 public interface EmbeddableUserRepository extends CrudRepository<EmbeddableUser, UserId> {
+
     Optional<EmbeddableUser> findByPersonalEmail(Email email);
 
-    @Modifying
+    @Modifying @Transactional
     @Query("update EmbeddableUser u set u.workEmail.value = :newmail")
     void updateWorkMail( @Param(value = "newmail") String newmail);
 }

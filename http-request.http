@@ -1,0 +1,16 @@
+POST http://localhost:8080/add/irina-petrovskaya-1
+
+
+###
+POST http://localhost:8080/add/elena-pogorelova-2
+
+
+###
+
+GET http://localhost:8080/
+
+
+###
+
+PUT http://localhost:8080/update/jetbrains
+

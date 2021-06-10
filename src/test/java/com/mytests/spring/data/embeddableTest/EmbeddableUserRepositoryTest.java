@@ -17,33 +17,34 @@ class EmbeddableUserRepositoryTest {
 
     @Test
     void testSave() {
-        repository.save(new EmbeddableUser(new UserId(1L),
-                                           new NaturalPersonName("Wim", "Deblauwe"),
-                                           new Email("wim.deblauwe@gmail.com"),
-                                           new Email("wim.deblauwe@widit.be")));
+        repository.save(new EmbeddableUser(new UserId("1"),
+                                           new UserName("vova", "pupkin"),
+                                           new Email("otmorozok@mail.ru"),
+                                           new Email("vladimir.pupkin@sk.ru")));
     }
 
     @Test
     void testFindByEmail() {
-        repository.save(new EmbeddableUser(new UserId(1L),
-                                           new NaturalPersonName("Wim", "Deblauwe"),
-                                           new Email("wim.deblauwe@gmail.com"),
-                                           new Email("wim.deblauwe@widit.be")));
+        repository.save(new EmbeddableUser(new UserId("1"),
+                new UserName("vova", "pupkin"),
+                new Email("otmorozok@mail.ru"),
+                new Email("vladimir.pupkin@sk.ru")));
 
-        Optional<EmbeddableUser> byEmail = repository.findByPersonalEmail(new Email("wim.deblauwe@gmail.com"));
+        Optional<EmbeddableUser> byEmail = repository.findByPersonalEmail(new Email("otmorozok@mail.ru"));
         assertThat(byEmail).isPresent();
     }
     @Test
     void testUpdateEmail() {
-        repository.save(new EmbeddableUser(new UserId(1L),
-                new NaturalPersonName("Wim", "Deblauwe"),
-                new Email("wim.deblauwe@gmail.com"),
-                new Email("wim.deblauwe@widit.be")));
+        repository.save(new EmbeddableUser(new UserId("1"),
+                new UserName("vova", "pupkin"),
+                new Email("otmorozok@mail.ru"),
+                new Email("vladimir.pupkin@sk.ru")));
 
-        repository.updateWorkMail("wd@jetbrains.com");
+        repository.updateWorkMail("vp@president.ru");
+
         List<EmbeddableUser> users = (List<EmbeddableUser>) repository.findAll();
         for (EmbeddableUser user : users) {
-            System.out.println(user);
+            System.out.println("********************** "+user.getWorkEmail().getValue());
         }
         
     }

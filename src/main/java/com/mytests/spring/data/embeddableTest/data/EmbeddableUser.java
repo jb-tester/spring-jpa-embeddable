@@ -7,7 +7,7 @@ public class EmbeddableUser {
     @EmbeddedId
     private UserId id;
     
-    private NaturalPersonName name;
+    private UserName name;
     
     @Embedded
     @AttributeOverrides(@AttributeOverride(name = "value", column = @Column(name = "personal_email")))
@@ -21,7 +21,7 @@ public class EmbeddableUser {
     }
 
     public EmbeddableUser( UserId id,
-                           NaturalPersonName name,
+                           UserName name,
                            Email personalEmail,
                            Email workEmail) {
         this.id = id;
@@ -34,7 +34,7 @@ public class EmbeddableUser {
         return id;
     }
 
-    public NaturalPersonName getName() {
+    public UserName getName() {
         return name;
     }
 
