@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,5 +48,25 @@ class EmbeddableUserRepositoryTest {
             System.out.println("********************** "+user.getWorkEmail().getValue());
         }
         
+    }
+    @Test
+    void testFindById() {
+        List<EmbeddableUser> users = new ArrayList<>();
+        users.add(new EmbeddableUser(new UserId("1"),
+                new UserName("vova", "pupkin"),
+                new Email("otmorozok@mail.ru"),
+                new Email("vladimir.pupkin@sk.ru")));
+        users.add(new EmbeddableUser(new UserId("2"),
+                new UserName("vanya", "ivanov"),
+                new Email("ivanuska@mail.ru"),
+                new Email("ivan.ivanov@ochistka.ru")));
+        repository.saveAll(users);
+        EmbeddableUser user = repository.findByIdValue("2");
+        System.out.println("**********************************");
+        System.out.println(user);
+        System.out.println("**********************************");
+        assertThat(user.getId().getValue()).isEqualTo("2");
+
+
     }
 }

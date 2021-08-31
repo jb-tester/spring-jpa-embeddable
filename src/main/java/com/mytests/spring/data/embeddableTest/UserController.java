@@ -37,6 +37,10 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getById/{id}")
+    public String getById(@PathVariable("id") String id) {
+        return "got " + repository.findByIdValue(id);
+    }
     @GetMapping("/")
     public String getAll() {
         StringBuilder rez = new StringBuilder();

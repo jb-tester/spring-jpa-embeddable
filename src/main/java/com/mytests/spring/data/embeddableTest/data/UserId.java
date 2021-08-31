@@ -1,10 +1,11 @@
 package com.mytests.spring.data.embeddableTest.data;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 //@Embeddable
-public class UserId implements Serializable {
+public class UserId extends BaseEntity implements Serializable{
     @Column(name = "id")
     private String value;
 

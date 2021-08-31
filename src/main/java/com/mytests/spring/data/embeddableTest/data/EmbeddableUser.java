@@ -45,4 +45,14 @@ public class EmbeddableUser {
     public Email getWorkEmail() {
         return workEmail;
     }
+
+    @Override
+    public String toString() {
+        return "EmbeddableUser{" +
+                "id=" + id.getValue() +
+                ", name=" + name +
+                ", personalEmail=" + personalEmail.getValue() +
+                ", workEmail=" + workEmail.getValue() +
+                '}';
+    }
 }
